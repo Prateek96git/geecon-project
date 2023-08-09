@@ -1,5 +1,5 @@
-import React from 'react'
-import { useState } from 'react'
+import React, {useState} from 'react'
+import axios from 'axios'
 
 function Signup() {
 
@@ -8,8 +8,14 @@ function Signup() {
     const [email, setEmail] = useState("")
 
     function submit() {
-        let item = {name,email,password}
-        console.log(item)
+        axios 
+        .post('http://localhost:5000/api/signup', { name, email, password })
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+            console.error(error.response.data);
+        })
     }
 
     return (
